@@ -2,9 +2,30 @@
 <html lang="en">
   <head>
     <title>My Website</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <form id='city-search'>
+      <input id='search' type='text' name='search'>
+      <input type='submit' name='submit'/>
+    </form>
+    <div id="location-data">
+      <table class="weather-table">
+        <tr>
+          <th id="city-header">City</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Temperature</th>
+          <th>Wind Speed</th>
+          <th>Wind Direction</th>
+          <th>Overview</th>
+        </tr>
+        <tr id="city-row">
+
+        </tr>
+      </table>
+
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
