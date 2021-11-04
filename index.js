@@ -18,30 +18,54 @@ const searchBar = document.querySelector('#search')
 const locationDataDiv = document.querySelector('#location-data')
 
 
+
 submitButton.addEventListener('click', function(e){
     console.log(searchBar.value)
     e.preventDefault()
     fetch(`https://nominatim.openstreetmap.org/search.php?q=${searchBar.value}&format=jsonv2`)
         .then(response => response.json())
         .then(data => {
-            let locationUl = document.createElement('ul')
-            locationDataDiv.append(locationUl)
-            let cityLi = document.createElement('li')
-            cityLi.dataset.city = data[0].display_name
-            cityLi.dataset.latitude = data[0].lat
-            cityLi.dataset.longitude = data[0].lon
-            cityLi.textContent = data[0].display_name
-            cityLi.setAttribute('class', 'city-name')
-            addCityEventListener(cityLi)
-            locationUl.append(cityLi)
+            // let locationUl = document.createElement('ul')
+            // locationDataDiv.append(locationUl)
+            // let cityLi = document.createElement('li')
+            // cityLi.dataset.city = data[0].display_name
+            // cityLi.dataset.latitude = data[0].lat
+            // cityLi.dataset.longitude = data[0].lon
+            // cityLi.textContent = data[0].display_name
+            // cityLi.setAttribute('class', 'city-name')
+            const firstRow = document.querySelector("#first-row")
+            let tableDataOne = document.createElement('td')
+            const displayName = data[0].display_name
+            const splitName = displayName.split(",")
+            const cityArray = splitName[0]
+            const stateArray = splitName[2]
+            const cityStateArray = cityArray.concat(stateArray)
+            tableDataOne.dataset.city = data[0].display_name
+            tableDataOne.textContent = cityStateArray
+            console.log(data[0].display_name)
+            console.log(cityStateArray)
+            tableDataOne.setAttribute('class', 'city-name')
+            firstRow.append(tableDataOne)
+            addCityEventListener(tableDataOne)
+            // locationUl.append(cityLi)
 //Set Lat
-            let cityLatitudeLi = document.createElement('li')
-            cityLatitudeLi.textContent = data[0].lat
-            locationUl.append(cityLatitudeLi)
+            // const secondRow = document.querySelector('#second-row')
+            let tableDataTwo = document.createElement('td')
+            tableDataTwo.textContent = data[0].lat
+            firstRow.append(tableDataTwo)
+
+
+            // let cityLatitudeLi = document.createElement('li')
+            // cityLatitudeLi.textContent = data[0].lat
+            // locationUl.append(cityLatitudeLi)
 //Set Long
-            let cityLongitudeLi = document.createElement('li')
-            cityLongitudeLi.textContent = data[0].lon
-            locationUl.append(cityLongitudeLi)
+            let dataTableThree = document.createElement('td')
+            dataTableThree.textContent = data[0].lon
+            firstRow.append(dataTableThree)
+
+            // let cityLongitudeLi = document.createElement('li')
+            // cityLongitudeLi.textContent = data[0].lon
+            // locationUl.append(cityLongitudeLi)
 
 
 
@@ -95,6 +119,9 @@ window.addEventListener('DOMContentLoaded', function(){
 // console.log(data[0].display_name)
 // console.log(data[0].lat)
 // console.log(data[0].lon)
+
+
+
 
 
 

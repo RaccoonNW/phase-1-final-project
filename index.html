@@ -5,21 +5,58 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <form id='city-search'>
-      <input id='search' type='text' name='search'>
-      <input type='submit' name='submit'/>
-    </form>
-    <div id="location-data">
-      <table class="weather-table">
+    <div class="wrapper">
+      <form id='city-search' class="search-form">
+        <input id='search' type='text' name='search' class="search">
+        <input type='submit' name='submit'/>
+      </form>
+    </div>
+    <div id="location-data" class="data-location">
+      <!-- <table class="weather-table">
         <tr>
           <th id="city-header">City</th>
-          <th>Date</th>
+          <th id="date-">Date</th>
           <th>Time</th>
           <th>Temperature</th>
           <th>Wind Speed</th>
           <th>Wind Direction</th>
-          <th>Overview</th>
-        </tr>
+          <th>Overview</th> -->
+</div>
+<div class="row">
+  <div class="column">
+    <table>
+      <tr>
+        <th>Area Name</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+      </tr>
+      <tr id="first-row">
+
+      </tr>
+      <tr id="second-row">
+
+      </tr>
+      <tr id="third-row">
+
+      </tr>
+    </table>
+  </div>
+  <div class="column">
+    <table>
+      <tr>
+        <th>Area Name</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+  </div>
+</div> 
         <tr id="city-row">
 
         </tr>
