@@ -16,15 +16,18 @@ const searchForm = document.querySelector('#city-search')
 const submitButton = document.querySelector('[name="submit"]')
 const searchBar = document.querySelector('#search')
 const locationDataDiv = document.querySelector('#location-data')
+const firstRow = document.querySelector("#first-row")
 
 
 
 submitButton.addEventListener('click', function(e){
-    console.log(searchBar.value)
     e.preventDefault()
     fetch(`https://nominatim.openstreetmap.org/search.php?q=${searchBar.value}&format=jsonv2`)
         .then(response => response.json())
         .then(data => {
+            addCityName(data)
+            setLatitude(data)
+            setLongitude(data)
             // let locationUl = document.createElement('ul')
             // locationDataDiv.append(locationUl)
             // let cityLi = document.createElement('li')
@@ -33,35 +36,35 @@ submitButton.addEventListener('click', function(e){
             // cityLi.dataset.longitude = data[0].lon
             // cityLi.textContent = data[0].display_name
             // cityLi.setAttribute('class', 'city-name')
-            const firstRow = document.querySelector("#first-row")
-            let tableDataOne = document.createElement('td')
-            const displayName = data[0].display_name
-            const splitName = displayName.split(",")
-            const cityArray = splitName[0]
-            const stateArray = splitName[2]
-            const cityStateArray = cityArray.concat(stateArray)
-            tableDataOne.dataset.city = data[0].display_name
-            tableDataOne.textContent = cityStateArray
-            console.log(data[0].display_name)
-            console.log(cityStateArray)
-            tableDataOne.setAttribute('class', 'city-name')
-            firstRow.append(tableDataOne)
-            addCityEventListener(tableDataOne)
+            // const firstRow = document.querySelector("#first-row")
+            // let tableDataOne = document.createElement('td')
+            // const displayName = data[0].display_name
+            // const splitName = displayName.split(",")
+            // const cityArray = splitName[0]
+            // const stateArray = splitName[2]
+            // const cityStateArray = cityArray.concat(stateArray)
+            // tableDataOne.dataset.city = data[0].display_name
+            // tableDataOne.textContent = cityStateArray
+            // console.log(data[0].display_name)
+            // console.log(cityStateArray)
+            // tableDataOne.setAttribute('class', 'city-name')
+            // firstRow.append(tableDataOne)
+            // addCityEventListener(tableDataOne)
             // locationUl.append(cityLi)
 //Set Lat
             // const secondRow = document.querySelector('#second-row')
-            let tableDataTwo = document.createElement('td')
-            tableDataTwo.textContent = data[0].lat
-            firstRow.append(tableDataTwo)
+            // let tableDataTwo = document.createElement('td')
+            // tableDataTwo.textContent = data[0].lat
+            // firstRow.append(tableDataTwo)
 
 
             // let cityLatitudeLi = document.createElement('li')
             // cityLatitudeLi.textContent = data[0].lat
             // locationUl.append(cityLatitudeLi)
 //Set Long
-            let dataTableThree = document.createElement('td')
-            dataTableThree.textContent = data[0].lon
-            firstRow.append(dataTableThree)
+            // let dataTableThree = document.createElement('td')
+            // dataTableThree.textContent = data[0].lon
+            // firstRow.append(dataTableThree)
 
             // let cityLongitudeLi = document.createElement('li')
             // cityLongitudeLi.textContent = data[0].lon
@@ -72,11 +75,47 @@ submitButton.addEventListener('click', function(e){
     })
 })
 
+//Add city name function
+
+function addCityName(data){
+    let tableDataOne = document.createElement('td')
+    const displayName = data[0].display_name
+    const splitName = displayName.split(",")
+    const cityArray = splitName[0]
+    const stateArray = splitName[2]
+    const cityStateArray = cityArray.concat(stateArray)
+    tableDataOne.dataset.city = data[0].display_name
+    tableDataOne.dataset.latitude = data[0].lat
+    tableDataOne.dataset.longitude = data[0].lon
+    tableDataOne.textContent = cityStateArray
+    // console.log(data[0].display_name)
+    // console.log(cityStateArray)
+    tableDataOne.setAttribute('class', 'city-name')
+    firstRow.append(tableDataOne)
+    addCityEventListener(tableDataOne)
+
+}
+
+function setLatitude(data){
+    let tableDataTwo = document.createElement('td')
+    tableDataTwo.textContent = data[0].lat
+    firstRow.append(tableDataTwo)
+    addCityEventListener(tableDataTwo)
+}
+
+function setLongitude(data){
+    let tableDataThree = document.createElement('td')
+    tableDataThree.textContent = data[0].lon
+    firstRow.append(tableDataThree)
+    addCityEventListener(tableDataThree)
+}
+
 function addCityEventListener(cityName){
     cityName.addEventListener('click', function(e){
         fetch(`https://api.weather.gov/points/${e.target.dataset.latitude},${e.target.dataset.longitude}`)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 let hourly = document.createElement('li')
                 let ulForecast = document.createElement('ul')
                 ulForecast.append(hourly)
@@ -85,7 +124,6 @@ function addCityEventListener(cityName){
                 console.log(data.properties.forecast)
                 console.log(data.properties.forecastHourly)
                 console.log(data.properties)
-                console.log(hourly.dataset.forecastHourly)
                 fetch(`${hourly.dataset.forecastHourly}`)
                     .then(response => response.json())
                     .then(data => {
@@ -110,15 +148,6 @@ window.addEventListener('DOMContentLoaded', function(){
     const newEvent = new Event('click')
     submitButton.dispatchEvent(newEvent)
 })
-
-
-
-
-
-// console.log(data)
-// console.log(data[0].display_name)
-// console.log(data[0].lat)
-// console.log(data[0].lon)
 
 
 
