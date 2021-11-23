@@ -1,55 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>My Website</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="wrapper">
       <form id='city-search' class="search-form">
-        <input id='search' type='text' name='search' class="search">
-        <input type='submit' name='submit'/>
+        <input id='search' type='text' name='search' class="search" placeholder="City Name">
+        <input type='submit' name='submit' class="search-button"/>
       </form>
     </div>
-<!--
-<div class="row">
-  <div class="column">
-    <table>
-      <tr>
-        <th>Area Name</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-      </tr>
-      <tr id="first-row">
-
-      </tr>
-      <tr id="second-row">
-
-      </tr>
-      <tr id="third-row">
-
-      </tr>
-    </table>
-  </div>
-  <div class="column">
-    <table>
-      <tr>
-        <th>Area Name</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-      </tr>
-      <tr>
-      </tr>
-      <tr>
-      </tr>
-      <tr>
-      </tr>
-    </table>
-  </div>
-</div> 
--->
+    <div id="city-weather-cards"></div>
 <div id="location-data" class="data-location">
 </div>
-    <script src="index.js"></script>
+    <script src="./fetchData.js"></script>
+    <script src="./index.js"></script>
   </body>
 </html>
