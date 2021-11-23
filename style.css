@@ -28,11 +28,6 @@
   color: white;
 }
 
-/* .search-form {
-  border: 3px black;
-  min-width: 100px;
-  align-items: center;
-} */
 
 #city-weather-cards {
   margin: 2rem;
@@ -73,13 +68,6 @@
 .name {
   color: skyblue;
 }
-
-/* html {
-  height: 100%;
-  width: 100%;
-  background-image: url(IMG_2878-copy-2);
-  background-repeat: no-repeat;
-} */
 
 .button {
   background-color: black;
