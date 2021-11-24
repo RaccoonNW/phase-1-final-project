@@ -80,3 +80,27 @@
   font-size: 16px;
   width: min-content;
 }
+
+html, body {
+  /* background: url(IMG_2841.jpg); */
+  /* background-repeat: no-repeat;
+  background-size: auto; */
+  height: 100%;
+  margin: 0;
+  background: url(IMG_2841.jpg);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.title-heading {
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  color: white;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  height: fit-content;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
