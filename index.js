@@ -20,7 +20,7 @@ submitButton.addEventListener('click', function(e){
             const splitName = displayName.split(",")
             const cityArray = splitName[0]
             const stateArray = splitName[2]
-            const cityStateArray = cityArray.concat(stateArray)
+            const cityStateArray = cityArray.concat(',', stateArray)
             p.innerText = cityStateArray
 
             let btn = document.createElement('button')
